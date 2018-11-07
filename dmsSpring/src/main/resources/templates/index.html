@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello</title>
+</head>
+<table>
+
+<!--<form id="sortAndFilters" th:action="@{/index}" th:object="${formClass}" method="post">-->
+    <!--<select th:field="*{sort}">-->
+        <!--<option th:value="-1"></option>-->
+        <!--<option th:value="1">По возрастанию</option>-->
+        <!--<option th:value="0">По убыванию</option>-->
+    <!--</select>-->
+
+    <!--<p>Фильтры</p>-->
+    <!--<p>Название документа: <input type="text" th:field="*{fileName}" /></p>-->
+    <!--<p>Имя автора: <input type="text" th:field="*{fileAuthor}" /></p>-->
+
+    <!--<select th:field="*{typeDoc}">-->
+        <!--<option th:value="-1"></option>-->
+        <!--<option th:value="1">Работа</option>-->
+        <!--<option th:value="2">Учеба</option>-->
+    <!--</select>-->
+
+    <!--<select th:field="*{typeDate}">-->
+        <!--<option th:value="-1"></option>-->
+        <!--<option th:value="1">Дата загрузки</option>-->
+        <!--<option th:value="2">Дата последнего изменения</option>-->
+    <!--</select>-->
+
+    <!--<p><input formaction="/index" name="sortAndFilter" type="submit" value="Вперед" /></p>-->
+<!--</form>-->
+
+<!--<table>-->
+    <!--<thead>-->
+        <!--<tr>-->
+            <!--<th>Файл</th>-->
+            <!--<th>Автор</th>-->
+            <!--<th>Дата загрузки</th>-->
+            <!--<th>Дата последнего редактирования</th>-->
+            <!--<th>Версия</th>-->
+            <!--<th>Расширение</th>-->
+            <!--<th>Тип документа</th>-->
+            <!--<th>Размер</th>-->
+        <!--</tr>-->
+    <!--</thead>-->
+    <!--<tbody>-->
+        <!--<tr th:each="document : ${listDocument}">-->
+            <!--<td th:utext="${document.fileName}"></td>-->
+            <!--<td th:utext="${document.fileAuthor}"></td>-->
+            <!--<td th:utext="${document.dateUploading}"></td>-->
+            <!--<td th:utext="${document.dateLastEditing}"></td>-->
+            <!--<td th:utext="${document.fileVersion}"></td>-->
+            <!--<td th:utext="${document.ext}"></td>-->
+            <!--<th:block th:each="docType : ${listDocType}">-->
+                <!--<td th:if="${docType.id} == ${document.typeDoc}" th:text="${docType.name}"></td>-->
+            <!--</th:block>-->
+            <!--<td th:utext="${document.size}"></td>-->
+            <!--<td><a th:href='@{/document/edit(id = ${document.id})}'>Обновить</a></td>-->
+            <!--<td><a th:href='@{/document/remove(id = ${document.id})}'>Удалить</a></td>-->
+        <!--</tr>-->
+    <!--</tbody>-->
+<!--</table>-->
+    <h2>Добавить</h2>
+    <form id="addDocument" th:action="@{/doc/add}" th:object="${document}" method="post" enctype="multipart/form-data">
+        <input type="hidden" th:field="*{id}" />
+        <p>Автор: <input type="text" th:field="*{fileAuthor}" th:value="*{fileAuthor}" /></p>
+        <p>Версия файла: <input type="text" th:field="*{fileVersion}" th:value="*{fileVersion}" /></p>
+        <p>Тип документа:<select th:field="*{typeDoc}">
+            <option th:value="-1"></option>
+            <th:block th:each="docType : ${listDocType}">
+                <option th:value="${docType.id}" th:text="${docType.name}"></option>
+            </th:block>
+        </select></p>
+
+        <p>Добавить файл: <input type="file" name="file"></p>
+
+        <p><input formaction="/doc/add" name="addDocument" type="submit" value="Добавить" /></p>
+    </form>
+
+    <!--<form id="addTypeDoc" th:action="@{/typedoc/add}" th:object="${typedoc}" method="post">-->
+        <!--<input type="hidden" th:field="*{id}" />-->
+        <!--<p>Название: <input type="text" th:field="*{name}" /></p>-->
+        <!--<p><input formaction="/typedoc/add" name="addTypeDoc" type="submit" value="Добавить" /></p>-->
+    <!--</form>-->
+</body>
+</html>

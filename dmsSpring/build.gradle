@@ -1,0 +1,52 @@
+buildscript {
+	ext {
+		springBootVersion = '2.0.5.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'war'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group = 'ml.bondarev'
+
+apply plugin: 'war'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.bondarev'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+}
+
+war {
+	enabled = true
+}
+
+dependencies {
+	implementation('org.springframework.boot:spring-boot-starter-data-jpa')
+	implementation('org.springframework.boot:spring-boot-starter-web')
+	implementation('org.springframework.boot:spring-boot-starter-jdbc')
+	runtimeOnly('org.postgresql:postgresql')
+	testImplementation('org.springframework.boot:spring-boot-starter-test')
+	compile group: 'com.zaxxer', name: 'HikariCP', version: '3.2.0'
+	compile group: 'org.postgresql', name: 'postgresql', version: '42.2.5'
+	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+	compile("org.springframework:spring-tx")
+	compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
+	compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
+	compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.9.7'
+	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+	compile group: 'com.google.guava', name: 'guava', version: '23.0'
+	compile group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.1'
+}
